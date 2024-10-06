@@ -9,13 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
 
   public users: any;
-  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.http.get('https://localhost:5001/api/users').subscribe({
       next: users => this.users = users,
-      error: () => console.error('There was an error loading the users'),
+      error: error => console.error('There was an error loading the users, ', error),
       complete: () => console.log('Users loaded successfully')
     });
   }
